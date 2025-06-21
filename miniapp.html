@@ -2,17 +2,42 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Telegram Mini App</title>
+  <title>Metal Genre Selector</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-<body style="text-align:center; font-family:sans-serif;">
-  <h1>Привет, <span id="username">гость</span>!</h1>
+<body>
+  <h1>Выбери свой жанр:</h1>
+  <button onclick="selectGenre('Black Metal')">Black Metal</button>
+  <button onclick="selectGenre('Death Metal')">Death Metal</button>
+  <button onclick="selectGenre('Power Metal')">Power Metal</button>
+
+  <div id="result"></div>
+
   <script>
     const tg = window.Telegram.WebApp;
-    tg.expand();
-    const user = tg.initDataUnsafe?.user;
-    if (user) {
-      document.getElementById("username").innerText = user.first_name;
+    tg.expand(); // на весь экран
+
+    function selectGenre(genre) {
+      const result = document.getElementById("result");
+      result.textContent = `Ты выбрала: ${genre}. Уважение +100 🤘`;
     }
   </script>
 </body>
